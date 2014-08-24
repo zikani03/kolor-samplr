@@ -1,0 +1,11 @@
+<div class="sample-panel" data-bind="attr: { id : $index }" >
+    <div class="color" data-bind="style: { backgroundColor : sample.rgb }"></div>
+    <div class="panel-text">
+        <label data-bind="text: sample.hex"></label>
+        <ul class="rgb">
+            <li>R<span class="value" data-bind="text: sample.R"></span></li>
+            <li>G<span class="value" data-bind="text: sample.G"></span></li>
+            <li>B<span class="value" data-bind="text: sample.B"></span></li>
+        </ul>
+    </div>
+</div>

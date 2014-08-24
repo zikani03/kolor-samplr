@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Colour Samplez</title>
+   <link rel="stylesheet" type="text/css" href="bower_components/uikit-2.9.0/css/uikit.min.css" />
+   <link rel="stylesheet" type="text/css" href="bower_components/uikit-2.9.0/css/uikit.gradient.min.css" />
+   <link rel="stylesheet" type="text/css" href="css/application.css" />
+</head>
+<body>
+	<!-- Static navbar -->
+	<div class="navbar">
+        <nav class="uk-navbar uk-navbar-attached">
+            <a class="uk-navbar-brand" href="#">Kolor Samplr</a>
+            
+            <ul class="uk-navbar-nav">
+                <li class="uk-parent" data-uk-dropdown="">
+                    <a href=""><i class="uk-icon-home"></i> Home</a>
+                </li>
+                <li class="uk-parent" data-uk-dropdown="">
+                    <a href=""><i class="uk-icon-info"></i> About</a>
+                </li>
+                <li class="uk-parent" data-uk-dropdown="">
+                    <a href=""><i class="uk-icon-question"></i> Help</a>
+                </li>
+            </ul>
+            
+            <div class="uk-navbar-content uk-navbar-flip  uk-hidden-small">
+                <div class="uk-button-group">
+                    <button class="uk-button"><i class="uk-icon-file"></i> New Workspace</button>
+                    <button class="uk-button"><i class="uk-icon-sort"></i> Next Workspace</button> 
+                    <button class="uk-button"><i class="uk-icon-cog"></i> Settings</button>
+                </div>
+            </div>
+            
+        </nav>
+	</div>
+    
+    <div class="uk-grid uk-container-center ks-workspace active" data-uk-grid-match>
+    
+        <div class="uk-width-2-3">
+            <div class="canvas-wrapper active">           
+                <canvas width="800" height="600" id="canvasItem" class="workspace-canvas" data-bind="event : { mousemove: updatePreview, click : addSample }"></canvas>            
+            </div><!-- .canvas-wrapper.active -->
+        </div><!-- .uk-width-2-3 -->
+        
+        <div class="uk-width-1-3">
+            <div class="uk-navbar uk-navbar-attached">
+
+                <div class="uk-navbar-content uk-hidden-small">
+
+                    
+                    <div class="panel uk-dropdown uk-dropdown-navbar">
+                        <p class="load-image-form">
+                          <form class="uk-form uk-margin-remove uk-display-inline-block">
+                            <button class="uk-button uk-button-default" type="button">Load Image</button>
+                            <input class="text" name="url" />
+                          </form>
+                        </p>
+                        
+                    </div>
+                </div>
+                <!-- preview -->
+                
+                <div class="preview-panel" >      
+                    <!-- coords -->
+                    <ul class="uk-grid coordinates">
+                        <li class="uk-width-1-2">x<span class="x" data-bind="text: preview.x"></span></li>
+                        <li class="uk-width-1-2">y<span class="y" data-bind="text: preview.y"></span></li>
+                    </ul>
+                    
+                    <div class="sample-panel">
+                        <div class="color" data-bind="style: { backgroundColor : preview.rgb }"></div>
+                        <div class="panel-text">
+                            <label data-bind="text: preview.hex"></label>
+                            <ul class="rgb">
+                                <li>R<span class="value" data-bind="text: preview.R"></span></li>
+                                <li>G<span class="value" data-bind="text: preview.G"></span></li>
+                                <li>B<span class="value" data-bind="text: preview.B"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div><!-- .preview-panel -->
+            </div>
+            
+            <div class="ks-workspace-sidebar">
+            
+            
+            <hr />
+            
+            <div class="uk-clearfix"></div>
+            
+            <div class="samples-container" id="samplez">
+                <div class="info">
+                    <span data-bind="text: $root.samples().length"></span> sample points
+                </div>
+
+                <!-- samples -->
+                <div class="sample-panel-wrapper" data-bind="foreach: {data: samples, as : 'sample'}">
+                    <!-- <ks-sample data-bind="data: sample" ></ks-sample> -->
+                    <div class="sample-panel" data-bind="attr: { id : $index }" >
+                        <div class="color" data-bind="style: { backgroundColor : sample.rgb }"></div>
+                        <div class="panel-text">
+                            <label data-bind="text: sample.hex"></label>
+                            <ul class="rgb">
+                                <li>R<span class="value" data-bind="text: sample.R"></span></li>
+                                <li>G<span class="value" data-bind="text: sample.G"></span></li>
+                                <li>B<span class="value" data-bind="text: sample.B"></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="ks-toolbar">
+                
+                    <div class="ks-actions uk-button-group">
+                        <button class="uk-button uk-button-small" data-bind="click: reverseSamples"><i class="uk-icon-sort"></i> Sort</button>
+                        
+                        <button class="uk-button uk-button-small"><i class="uk-icon-save"></i> Save All</button>
+                        
+                        <button class="uk-button uk-button-small" data-bind="click: clearAll"><i class="uk-icon-trash-o"></i> Clear All</button>
+                    </div>
+                    
+                </div><!-- .ks-toolbar -->
+            
+            </div>
+            
+        </div>
+        </div>
+    </div><!-- .ks-workspace -->
+    
+</div>
+<script type="text/javascript" data-main="js/app" src="js/lib/require.js"></script>
+</body>
+</html>
