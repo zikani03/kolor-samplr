@@ -1,6 +1,6 @@
 require.config({
 	paths: {
-		ko: 'lib/knockout-2.2.0'
+		ko: '../bower_components/knockout-3.2.0'
 	}
 });
 
