@@ -6,11 +6,10 @@ define(['ko', 'ColorSample', 'KsMarker'], function(ko, ColorSample, KsMarker){
 		self.preview = new ColorSample(255, 255, 255, 0, 0);
 		
 		self.samples = ko.observableArray([]);
-		
-        console.log(arguments[1]);
+
 		self.imgSrc  = arguments[1] || "img/test.jpg";
 		self.image   = new Image();
-		// http://js
+
 		self.image.crossOrigin = true;
 		self.canvas  = Canvas ;
 		
