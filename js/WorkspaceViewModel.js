@@ -7,7 +7,8 @@ define(['ko', 'ColorSample', 'KsMarker'], function(ko, ColorSample, KsMarker){
 		
 		self.samples = ko.observableArray([]);
 		
-		self.imgSrc  = "img/test.jpg" || arguments[1] ;
+        console.log(arguments[1]);
+		self.imgSrc  = arguments[1] || "img/test.jpg";
 		self.image   = new Image();
 		// http://js
 		self.image.crossOrigin = true;
@@ -26,11 +27,16 @@ define(['ko', 'ColorSample', 'KsMarker'], function(ko, ColorSample, KsMarker){
         
         self.image.onload = function(){
             
+            self.canvas.width  = self.image.width;
+            self.canvas.height = self.image.height;
+            
             self.context = self.canvas.getContext('2d') ;	
             
             self.context.drawImage( self.image, 0, 0);
             
+            
             self.imageData = self.context.getImageData(0, 0, self.image.width, self.image.height);
+            
         };
         
         self.init();
