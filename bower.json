@@ -1,0 +1,32 @@
+{
+  "name": "kolor-samplr",
+  "version": "0.1.0",
+  "homepage": "https://github.com/zikani03/kolor-samplr",
+  "authors": [
+    "Zikani <zikani.nmwase@ymail.com>"
+  ],
+  "description": "color picking from images",
+  "main": "index.html",
+  "keywords": [
+    "color",
+    "picker",
+    "knockout",
+    "uikit"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "knockoutjs": "3.2.*",
+    "requirejs-bower": "2.1.*",
+    "text": "requirejs/text#~2.0.12",
+    "jquery-1.11.1.min": "http://code.jquery.com/jquery-1.11.1.min.js",
+    "uikit-2.9.0": "https://github.com/uikit/uikit/releases/download/v2.9.0/uikit-2.9.0.zip"
+  }
+}
