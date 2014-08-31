@@ -1,18 +1,24 @@
-define(['ko', 'ColorSample', 'KsMarker'], function(ko, ColorSample, KsMarker){
+define(['ko', 'ColorSample', 'KsMarker', 'text!./Workspace.html'], function(ko, ColorSample, KsMarker, workspaceTemplate){
 
-	function WorkspaceViewModel( Canvas ){    
+	function WorkspaceViewModel( params, Canvas ){    
 		var self = this;
 		
 		self.preview = new ColorSample(255, 255, 255, 0, 0);
 		
+        self.workspaceCanvasId = new Date() * 1;
+        
 		self.samples = ko.observableArray([]);
-
-		self.imgSrc  = arguments[1] || "img/test.jpg";
+        //arguments[1]
+		
+        self.imgSrc  = params.imgUrl || "img/test.jpg";
 		self.image   = new Image();
 
 		self.image.crossOrigin = true;
-		self.canvas  = Canvas ;
-		
+        
+        console.log(self.workspaceCanvasId);
+        
+        self.canvas  = document.getElementById(self.workspaceCanvasId); //Canvas ;
+        
 		// store image data
 		self.imageData;
 		// canvas context
@@ -25,6 +31,10 @@ define(['ko', 'ColorSample', 'KsMarker'], function(ko, ColorSample, KsMarker){
         };
         
         self.image.onload = function(){
+            
+            if (! self.canvas) {
+                self.loadWorkspaceCanvas();
+            }
             
             self.canvas.width  = self.image.width;
             self.canvas.height = self.image.height;
@@ -41,6 +51,9 @@ define(['ko', 'ColorSample', 'KsMarker'], function(ko, ColorSample, KsMarker){
         self.init();
     }
     
+    WorkspaceViewModel.prototype.loadWorkspaceCanvas = function() {
+        this.canvas = document.getElementById(this.workspaceCanvasId);
+    }
 /**
  *  
  * returns a color sample from the colors at the give coordinates in
@@ -116,5 +129,8 @@ define(['ko', 'ColorSample', 'KsMarker'], function(ko, ColorSample, KsMarker){
         return true;
     }
     
-    return WorkspaceViewModel;
+    return {
+        viewModel: WorkspaceViewModel,
+        template : workspaceTemplate
+    }
 });
