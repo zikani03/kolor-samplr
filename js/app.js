@@ -1,10 +1,11 @@
 require.config({
     baseUrl: ".",
 	paths: {
-		"ko" : "bower_components/knockout-3.2.0",
-		"jquery" : "bower_components/jquery-1.9.1.min",
+		"ko" : "bower_components/knockoutjs/dist/knockout",
+		"text"  : "bower_components/text/text",
+        
+		"jquery" : "bower_components/jquery-1.11.1.min/index",
 		"uikit"  : "bower_components/uikit-2.9.0/js/uikit.min",
-		"text"  : "bower_components/require.text",
         
         "ColorSample" : "js/ColorSample",
         "KsMarker" : "js/KsMarker"
