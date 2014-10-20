@@ -1,5 +1,5 @@
 body {
-  background: #b5b5b5;
+  background: #D2D2D2;
 }
 .ks-workspace {
   margin-top: 10px;
@@ -14,9 +14,6 @@ body {
 .ks-workspace .workspace-canvas {
   border: 1px solid #403739;
   box-shadow: 0 0 3px #333;
-}
-.ks-workspace .canvas-wrapper {
-  overflow: hidden;
 }
 .ks-workspace-sidebar {
   color: #d2d9f0;
@@ -91,7 +88,7 @@ i.marker {
   position: absolute;
   width: 27px;
   height: 27px;
-  z-index: 1000;
+  z-index: 999999;
 }
 i.marker:hover {
   background-image: url(../img/glyphicons_185_screenshot.png);
