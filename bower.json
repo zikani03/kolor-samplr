@@ -27,6 +27,7 @@
     "requirejs-bower": "2.1.*",
     "text": "requirejs/text#~2.0.12",
     "jquery-1.11.1.min": "http://code.jquery.com/jquery-1.11.1.min.js",
-    "uikit-2.9.0": "https://github.com/uikit/uikit/releases/download/v2.9.0/uikit-2.9.0.zip"
+    "uikit-2.9.0": "https://github.com/uikit/uikit/releases/download/v2.9.0/uikit-2.9.0.zip",
+    "jquery-ui" : "*"
   }
 }
