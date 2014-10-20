@@ -1,29 +1,29 @@
-define(['ko', 'ColorSample', 'KsMarker', 'text!./Workspace.html'], function(ko, ColorSample, KsMarker, workspaceTemplate){
+define(["ko","./ColorSample","./KsMarker","text!./Workspace.html","jquery","jquery.ui"],function(ko, ColorSample, KsMarker, workspaceTemplate, $){
 
-	function WorkspaceViewModel( params, Canvas ){    
-		var self = this;
-		
-		self.preview = new ColorSample(255, 255, 255, 0, 0);
-		
+    var DRAG_MODE = 1, SAMPLING_MODE = 2;
+    function WorkspaceViewModel( params, Canvas ){    
+        var self = this;
+        
+        self.preview = new ColorSample(255, 255, 255, 0, 0);
+        
+        self.mode = ko.observable(SAMPLING_MODE);
+        
         self.workspaceCanvasId = new Date() * 1;
         
-		self.samples = ko.observableArray([]);
+        self.samples = ko.observableArray([]);
         //arguments[1]
-		
+        
         self.imgSrc  = params.imgUrl || "img/test.jpg";
-		self.image   = new Image();
+        self.image   = new Image();
 
-		self.image.crossOrigin = true;
-        
-        console.log(self.workspaceCanvasId);
-        
+        self.image.crossOrigin = true;
+                
         self.canvas  = document.getElementById(self.workspaceCanvasId); //Canvas ;
         
-		// store image data
-		self.imageData;
-		// canvas context
-		self.context ;
-        
+        // store image data
+        self.imageData;
+        // canvas context
+        self.context ;
         
         /** initialisation stuff  **/
         self.init = function(){
@@ -45,12 +45,22 @@ define(['ko', 'ColorSample', 'KsMarker', 'text!./Workspace.html'], function(ko, 
             
             
             self.imageData = self.context.getImageData(0, 0, self.image.width, self.image.height);
-            
+
+            $(self.canvas).draggable({
+                start: function(event, ui) {
+                    self.mode(DRAG_MODE);
+                },
+                stop: function(event, ui) {
+                    window.setTimeout(function() {
+                        self.mode(SAMPLING_MODE);
+                    }, 250);
+                }
+            });
         };
         
         self.init();
     }
-    
+        
     WorkspaceViewModel.prototype.loadWorkspaceCanvas = function() {
         this.canvas = document.getElementById(this.workspaceCanvasId);
     }
@@ -86,16 +96,18 @@ define(['ko', 'ColorSample', 'KsMarker', 'text!./Workspace.html'], function(ko, 
     }
 
     WorkspaceViewModel.prototype.addSample = function(){
-        var newSample = new ColorSample( 
-            this.preview.R(),
-            this.preview.G(),
-            this.preview.B(),
-            this.preview.x(),
-            this.preview.y()
-        );
-        
-        this.samples.unshift( newSample );
-        // this.addMarker(newSample);
+        if (SAMPLING_MODE === this.mode()) {
+            var newSample = new ColorSample( 
+                this.preview.R(),
+                this.preview.G(),
+                this.preview.B(),
+                this.preview.x(),
+                this.preview.y()
+            );
+            
+            this.samples.unshift( newSample );
+            // this.addMarker(newSample);
+        }
     }
 
     WorkspaceViewModel.prototype.removeSample = function( sample ){
@@ -105,12 +117,14 @@ define(['ko', 'ColorSample', 'KsMarker', 'text!./Workspace.html'], function(ko, 
     WorkspaceViewModel.prototype.reverseSamples = function(){
         this.samples.reverse();
     }
-	
+    
     WorkspaceViewModel.prototype.clearAll = function(){
         this.samples.removeAll();
     }
-	
+    
     WorkspaceViewModel.prototype.updatePreview = function(data, event) {
+        if (DRAG_MODE === this.mode()) return true;
+        
         var x = event.pageX - this.canvas.offsetLeft;
         var y = event.pageY - this.canvas.offsetTop;
         
