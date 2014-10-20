@@ -1,4 +1,4 @@
-define(['ko'],function(ko){
+define(['ko'], function(ko){
 	
 	var ColorSample = function( r, g, b, x, y){
 		

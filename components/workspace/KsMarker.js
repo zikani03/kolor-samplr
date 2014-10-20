@@ -1,5 +1,4 @@
-define(['ko', 'ColorSample'], function(ko, ColorSample) {
-    
+define(['ko', './ColorSample'], function(ko, ColorSample) {
     function KsMarker(sample) {
         this.visible = ko.observable(true);
         this.tag = ko.observable(KsMarker.prototype.defaults.tagName);
