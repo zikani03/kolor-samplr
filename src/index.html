@@ -38,22 +38,24 @@
         </nav>
 	</div>
     
-    <ks-workspace params="{ imgUrl: 'img/medium_14889020083.jpg' }"></ks-workspace>
-    <div class="uk-grid uk-container-center">
-    	<div class="uk-width-3-3">
-            photo credit: <a href="https://www.flickr.com/photos/112905264@N07/14889020083/">Betsie Nel</a> via <a href="http://photopin.com">photopin</a> <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/">cc</a> 
+    <div id="workspaces">
+        <ul class="uk-toolbar">
+            <li><button class="uk-btn uk-btn-default">Add Workspace</button></li>
+        </ul>
+        <div class="workspaces-wrapper" data-bind="foreach: workspaces">
+            <ks-workspace params="{ imgUrl: imageUrl, name: name }"></ks-workspace>
+        </div>
+        
+        <div class="uk-grid uk-container-center">
+            <div class="uk-width-3-3">
+               <p>Photo credits: <a href="https://www.flickr.com/photos/112905264@N07/14889020083/">Betsie Nel</a> via <a href="http://photopin.com">photopin</a> <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/">cc</a></p>
+               <p>Photo credit: <a href="https://www.flickr.com/photos/trungnq/481610123/">ntrung</a> via <a href="http://photopin.com">photopin</a> <a href="http://creativecommons.org/licenses/by-nc/2.0/">cc</a></p>
+            </div>
         </div>
     </div>
-<!-- Uncomment below to see multiple independent workspaces in action :) -->
-<!--
-    <ks-workspace params="{ imgUrl: 'img/medium_481610123.jpg' }"></ks-workspace>   
-    <div class="uk-grid uk-container-center">
-    	<div class="uk-width-3-3">
-            photo credit: <a href="https://www.flickr.com/photos/trungnq/481610123/">ntrung</a> via <a href="http://photopin.com">photopin</a> <a href="http://creativecommons.org/licenses/by-nc/2.0/">cc</a> 
-        </div>
-    </div>
--->
-<script type="text/javascript"  src="js/requirejs-config.js"></script>
-<script type="text/javascript" data-main="js/startup" src="bower_components/requirejs-bower/require.js"></script>
+    
+    <script type="text/javascript"  src="/node_modules/knockout/build/output/knockout-latest.js"></script>
+    <script type="text/javascript"  src="/node_modules/knockout/build/output/knockout-latest.js"></script>
+    <script type="text/javascript"  src="dist/app.js"></script>
 </body>
 </html>
