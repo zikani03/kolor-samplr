@@ -9,8 +9,6 @@ Check out the ES5 requirejs version under the `master` branch
 
 Check it out [here](http://zikani03.github.com/kolor-samplr)
 
-## Building 
-
 You will need to download and install [node.js](http://nodejs.org/download/).
 
 ```
