@@ -1,12 +1,15 @@
+'use strict';
 import Workspace from './workspace.js';
 
-class WorkspaceViewModel {
-    constructor(params) {
-        this.workspace = new Workspace(params.imgUrl, {});
-    }
-}
+const fs = require('fs');
+const path = require('path');
 
-module.Component = {
-    viewModel: WorkspaceViewModel,
-    template: 'workspace/workspace.html'
+const html = fs.readFileSync(path.join(__dirname,'/workspace.html'), 'utf8');
+const Component = {
+    viewModel: function (params) {
+        this.workspace = new Workspace(params.workspaceId, params.imageUrl, {});
+    },
+    template: html
 };
+
+export default Component;
