@@ -7,44 +7,39 @@ import Marker from './marker.js';
 
 class Workspace {
     
-    constructor (imgUrl, options) {
+    constructor (workspaceId, imageUrl, options) {
         // set the preview sample
         this.preview = new ColorSample(255, 255, 255, 0, 0);
         
         this.mode = ko.observable(Workspace.SAMPLING_MODE);
         
-        // auto-assigned id for the canvas element
-        this.workspaceCanvasId = ko.observable(new Date() * 1);
+        this.workspaceId = workspaceId;
         
         this.samples = ko.observableArray([]);
         
-        this.imgUrl  = ko.observable(imgUrl);
+        this.imageUrl  = ko.observable(imageUrl);
         
-        this.canvas  = document.getElementById(self.workspaceCanvasId);
+        this.canvas  = document.getElementById(this.workspaceId);
         
+        this.image   = new Image();
         this.initialize();
     }
 
     initialize () {
-        this.image   = new Image();
-        this.image.onload = this.onImageLoaded;
         this.image.crossOrigin = true;
-        this.image.src = self.imgUrl;
+        this.image.onload = (e) => this.onImageLoaded(e);
+        this.image.src = this.imageUrl();
     }
 
-    loadCanvas() {
-        this.canvas = document.getElementById(this.workspaceCanvasId);
-    }
-    
-    onImageLoaded () {
-        if (! this.canvas) {
-            this.loadWorkspaceCanvas();
-        }
+    onImageLoaded (e) {
+        //if (this.canvas === null) {
+            this.canvas = document.getElementById(this.workspaceId);
+        //}
 
         this.canvas.width  = this.image.width;
         this.canvas.height = this.image.height;
 
-        this.context = self.canvas.getContext('2d');
+        this.context = this.canvas.getContext('2d');
         this.context.drawImage(this.image, 0, 0);
         this.imageData = this.context.getImageData(0, 0, this.image.width, this.image.height);
         
@@ -68,7 +63,7 @@ class Workspace {
      * returns a color sample from the colors at the give coordinates in
      * the workspace image 
      */
-    createColorSample (x, y) {
+    sampleAt (x, y) {
         /**
          *  NOTE:
          * 
@@ -101,7 +96,7 @@ class Workspace {
     }
     
     saveColorSample () {
-        if (SAMPLING_MODE === this.mode()) {
+        if (Workspace.SAMPLING_MODE === this.mode()) {
             var newSample = new ColorSample( 
                 this.preview.R(),
                 this.preview.G(),
@@ -110,7 +105,7 @@ class Workspace {
                 this.preview.y()
             );
             
-            this.samples.unshift( newSample );
+            this.samples.unshift(newSample);
             // this.addMarker(newSample);
         }
     }
@@ -123,22 +118,31 @@ class Workspace {
         this.samples.removeAll();
     }
     
+    set preview (value) {
+        this._preview = value;
+    }
+    
+    get preview () {
+        if (! this._preview) {
+            this._preview = this.sampleAt(0, 0);
+        }
+        return this._preview;
+    }
+    
     updatePreview (data, event) {
         if (Workspace.DRAG_MODE === this.mode()) return true;
         
         var x = event.pageX - this.canvas.offsetLeft;
         var y = event.pageY - this.canvas.offsetTop;
-        
-        var c = this.getColorSample(x, y);
+        var c = this.sampleAt(x, y);
         this.preview.R( c.R() );
         this.preview.G( c.G() );
         this.preview.B( c.B() );
         this.preview.x(x);
         this.preview.y(y);
-        
     }
 
-    toggleColorSampleOrder (property){
+    toggleOrder (){
         // TODO: toggle by the property provided
         this.samples.reverse();
     }
@@ -148,4 +152,4 @@ class Workspace {
 Workspace.DRAG_MODE = 1;
 Workspace.SAMPLING_MODE = 2;
 
-export Workspace;
+export default Workspace;

@@ -1,8 +1,8 @@
-<div class="uk-grid uk-container-center ks-workspace active" data-uk-grid-match>
+<div class="uk-grid uk-container-center ks-workspace active" data-bind="with: workspace" data-uk-grid-match>
     
         <div class="uk-width-2-3 ">
             <div class="active workspace-canvas-container">                     
-                <canvas width="800" height="600" class="workspace-canvas" data-bind="attr : { id : workspaceCanvasId}, event : { mousemove: updatePreview, click : addSample }"></canvas>
+                <canvas width="800" height="600" class="workspace-canvas" data-bind="attr : { id : workspaceId}, event : { mousemove: updatePreview, click : saveColorSample }"></canvas>
             </div><!-- .workspace-canvas-container.canvas-wrapper.active -->
         </div><!-- .uk-width-2-3 -->
         
@@ -58,11 +58,11 @@
                 <div class="ks-toolbar">
                 
                     <div class="ks-actions uk-button-group">
-                        <button class="uk-button uk-button-small" data-bind="click: reverseSamples"><i class="uk-icon-sort"></i> Sort</button>
+                        <button class="uk-button uk-button-small" data-bind="click: toggleOrder"><i class="uk-icon-sort"></i> Sort</button>
                         
                         <button class="uk-button uk-button-small"><i class="uk-icon-save"></i> Save All</button>
                         
-                        <button class="uk-button uk-button-small" data-bind="click: clearAll"><i class="uk-icon-trash-o"></i> Clear All</button>
+                        <button class="uk-button uk-button-small" data-bind="click: clearSamples"><i class="uk-icon-trash-o"></i> Clear All</button>
                     </div>
                     
                 </div><!-- .ks-toolbar -->
