@@ -8,7 +8,9 @@ class Application {
   }
 
   addWorkspace(imageUrl) {
-    const workspace = { imgUrl: imageUrl, name: 'workspace-' + (new Date()*3) };
+    const workspace = { imageUrl: imageUrl, workspaceId: 'workspace-' + (new Date()*3) };
     this.workspaces.push(workspace);
   }
 }
+
+export default Application;
