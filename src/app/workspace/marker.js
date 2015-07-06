@@ -16,7 +16,7 @@ class Marker {
         this.el.style.left = sample.x() + "px";
     }
 
-    setWorkspace = function(domElement) {
+    setWorkspace (domElement) {
         this.workspace = domElement;
         this.workspace.appendChild(this.el);
     }
@@ -28,4 +28,4 @@ Marker.defaults = {
     className : "marker"
 };
 
-export Marker;
+export default Marker;
