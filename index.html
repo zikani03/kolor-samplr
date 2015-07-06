@@ -41,7 +41,7 @@
             <li><button class="uk-btn uk-btn-default">Add Workspace</button></li>
         </ul>
         <div class="workspaces-wrapper" data-bind="foreach: { data: workspaces, as: 'ws'}">
-            <ks-workspace params="{imageUrl: '/src' + ws.imageUrl, workspaceId: ws.workspaceId}" ></ks-workspace>
+            <ks-workspace params="{imageUrl: './' + ws.imageUrl.substring(ws.imageUrl.lastIndexOf('/')+1), workspaceId: ws.workspaceId}" ></ks-workspace>
         </div>
         
         <div class="uk-grid uk-container-center">
