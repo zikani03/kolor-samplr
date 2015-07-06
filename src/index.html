@@ -3,10 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Kolor  Samplr</title>
-   <link rel="stylesheet" type="text/css" href="bower_components/uikit-2.9.0/css/uikit.min.css" />
-   <link rel="stylesheet" type="text/css" href="bower_components/uikit-2.9.0/css/uikit.gradient.min.css" />
-   <link rel="stylesheet" type="text/css" href="css/application.css" />
-   <link rel="stylesheet" type="text/css" href="css/style.css" />
+   <link rel="stylesheet" type="text/css" href="vendor.min.css" />
+   <link rel="stylesheet" type="text/css" href="application.min.css" />
 </head>
 <body class="ks">
 
@@ -42,8 +40,8 @@
         <ul class="uk-toolbar">
             <li><button class="uk-btn uk-btn-default">Add Workspace</button></li>
         </ul>
-        <div class="workspaces-wrapper" data-bind="foreach: workspaces">
-            <ks-workspace params="{ imgUrl: imageUrl, name: name }"></ks-workspace>
+        <div class="workspaces-wrapper" data-bind="foreach: { data: workspaces, as: 'ws'}">
+            <ks-workspace params="{imageUrl: '/src' + ws.imageUrl, workspaceId: ws.workspaceId}" ></ks-workspace>
         </div>
         
         <div class="uk-grid uk-container-center">
@@ -54,8 +52,6 @@
         </div>
     </div>
     
-    <script type="text/javascript"  src="/node_modules/knockout/build/output/knockout-latest.js"></script>
-    <script type="text/javascript"  src="/node_modules/knockout/build/output/knockout-latest.js"></script>
-    <script type="text/javascript"  src="dist/app.js"></script>
+    <script type="text/javascript"  src="kolor_samplr.min.js"></script>
 </body>
 </html>

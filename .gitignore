@@ -1,2 +1,7 @@
+*.log
+Thumbs.db
+tmp
+src/lib
 bower_components
+node_modules
 notes
