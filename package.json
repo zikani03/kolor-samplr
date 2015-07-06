@@ -1,0 +1,42 @@
+{
+  "name": "kolor-samplr",
+  "version": "0.0.1",
+  "description": "color sampler",
+  "main": "Gulpfile.js",
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "scripts": {
+    "start": "npm run build-js && npm run uglify && simple-server 3000",
+    "build-js": "browserify src/app/startup.js -o dist/kolor_samplr.js",
+    "uglify": "./node_modules/.bin/uglifyjs dist/kolor_samplr.js -o dist/kolor_samplr.min.js",
+    "test": "mocha tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zikani03/kolor-samplr.git"
+  },
+  "keywords": [
+    "knockout",
+    "components",
+    "color",
+    "sampler",
+    "stuff"
+  ],
+  "author": "Zikani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zikani03/kolor-samplr/issues"
+  },
+  "homepage": "https://github.com/zikani03/kolor-samplr",
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "knockout": "^3.3.0"
+  },
+  "devDependencies": {
+    "babelify": "^6.1.2",
+    "uglify-js": "^2.4.23"
+  }
+}
