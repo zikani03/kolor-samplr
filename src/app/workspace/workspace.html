@@ -38,16 +38,16 @@
                     </div>
 
                     <!-- samples -->
-                    <div class="sample-panel-wrapper" data-bind="foreach: {data: samples, as : 'sample'}">
+                    <div class="sample-panel-wrapper" data-bind="foreach: {data: samples}">
                         <!-- <ks-sample data-bind="data: sample" ></ks-sample> -->
                         <div class="sample-panel" data-bind="attr: { id : $index }" >
-                            <div class="color" data-bind="style: { backgroundColor : sample.rgb }"></div>
+                            <div class="color" data-bind="style: { backgroundColor : $data.rgb }"></div>
                             <div class="panel-text">
-                                <label data-bind="text: sample.hex"></label>
+                                <label data-bind="text: $data.hex"></label>
                                 <ul class="rgb">
-                                    <li>R<span class="value" data-bind="text: sample.R"></span></li>
-                                    <li>G<span class="value" data-bind="text: sample.G"></span></li>
-                                    <li>B<span class="value" data-bind="text: sample.B"></span></li>
+                                    <li>R<span class="value" data-bind="text: $data.R"></span></li>
+                                    <li>G<span class="value" data-bind="text: $data.G"></span></li>
+                                    <li>B<span class="value" data-bind="text: $data.B"></span></li>
                                 </ul>
                             </div>
                         </div>
