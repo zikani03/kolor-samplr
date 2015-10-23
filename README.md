@@ -7,14 +7,14 @@ Check out the ES5 requirejs version under the `master` branch
 
 ## Demo
 
-Check it out [here](http://zikani03.github.com/kolor-samplr)
+Check it out [here](http://zikani03.github.io/kolor-samplr)
 
 You will need to download and install [node.js](http://nodejs.org/download/).
 
 ```
     $ npm install -g browserify simple-server lessc
     $ npm start
-``
+```
 
 If all the steps in the build succeed, you can open http://localhost:3000/dist/index.html in your browser. 
 
